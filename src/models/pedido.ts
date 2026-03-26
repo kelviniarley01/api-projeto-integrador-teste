@@ -4,5 +4,4 @@ export interface pedido {
     data_pedido: string;
     status: string;
     valor_total: number;
-    tipo_entrega: string;
 }
