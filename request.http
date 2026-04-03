@@ -1,0 +1,331 @@
+# --- Clientes
+
+### Criar cliente
+POST http://localhost:3000/clientes
+Content-Type: application/json
+
+{
+    "nome: "Kelvin",
+    "cpf": "45260434862",
+    "idade": "18".
+    "email":kelviniarley6@gmail.com"
+    "senha":bola012212
+}
+
+###
+
+### Listar todos os clientes
+GET http://localhost:3000/clientes
+
+###
+
+###Buscar cliente por nome
+GET http://localhost:3000/clientes/nome?nome=Kelvin
+
+### Buscar cliente por id
+GET http://localhost:3000/clientes/2
+
+### Buscar cliente por cpf
+GET http://localhost:3000/clientes/cpf?cpf=45260434862
+
+### Buscar cliente por idade
+GET http://localhost:3000/clientes/idade?idade=18
+
+### Buscar cliente por email
+GET http://localhost:3000/clientes/email?email=kelviniarley6@gmail.com
+
+#----- PRODUTOS----------------------------
+
+#### Criar produto
+POST http://localhost:3000/produtos
+
+{
+    "nome_produto": "Camisa Polo",
+    "Tamanho": "M",
+    "id_categoria": 1,
+    "preco": 139.99,
+    "descricao": "Uma camisa polo de alta qualidade, feita com algodão premium para garantir conforto e durabilidade. Perfeita para ocasiões casuais ou semi-formais, esta camisa apresenta um design clássico com gola e botões, disponível em várias cores. Ideal para quem busca estilo e elegância em um único produto.",
+    "estoque": 10
+}
+
+###
+
+### Listar todos os produtos
+GET http://localhost:3000/produtos
+
+###buscar produto por id
+GET http://localhost:3000/produtos/2
+
+###buscar produto por tamanho
+GET http://localhost:3000/produtos/tamanho?Tamanho=M
+
+#### Buscar produto por nome
+GET http://localhost:3000/produtos/nome?nome=Camisa Polo
+
+##### Buscar produto por preço
+GET http://localhost:3000/produtos/preco?preco=139.99
+
+### Buscar produto por descrição
+GET http://localhost:3000/produtos/descricao?descricao=Uma camisa polo de alta qualidade, feita com algodão premium para garantir conforto e durabilidade. Perfeita para ocasiões casuais ou semi-formais, esta camisa apresenta um design clássico com gola e botões, disponível em várias cores. Ideal para quem busca estilo e elegância em um único produto.
+
+### Buscar produto por estoque
+GET http://localhost:3000/produtos/estoque?estoque=10
+
+#-----item_pedido----------------------------
+
+#### Criar item_pedido
+POST http://localhost:3000/item_pedido
+
+{
+    "id_pedido": 1,
+    "id_produto": 1,
+    "quantidade": 2,
+    "preco_total": 279.98
+}
+
+### Bucar item_pedido por id
+GET http://localhost:3000/item_pedido/2
+
+#### Buscar item_pedido por id_pedido
+GET http://localhost:3000/item_pedido/id_pedido?id_pedido=1
+
+### Buscar item_pedido por id_produto
+GET http://localhost:3000/item_pedido/id_produto?id_produto=1
+
+##### Buscar item_pedido por quantidade
+GET http://localhost:3000/item_pedido/quantidade?quantidade=2
+
+##### Buscar item_pedido por preco_total
+GET http://localhost:3000/item_pedido/preco_total?preco_total=279.98
+
+
+#-----pedidos----------------------------
+
+#### Criar pedido
+POST http://localhost:3000/pedidos
+
+{
+    "id_cliente": 1,
+    "data_pedido": "2024-06-01",
+    "status": "Em andamento",
+    "valor_total": 279.98
+}
+
+### Buscar pedido por id
+GET http://localhost:3000/pedidos/2
+
+#### Buscar pedido por id_cliente
+GET http://localhost:3000/pedidos/id_cliente?id_cliente=1
+
+### Buscar pedido por data_pedido
+GET http://localhost:3000/pedidos/data_pedido?data_pedido=2024-06-01
+
+##### Buscar pedido por status
+GET http://localhost:3000/pedidos/status?status=Em andamento
+
+##### Buscar pedido por valor_total
+GET http://localhost:3000/pedidos/valor_total?valor_total=279.98
+
+### Listar todos os pedidos
+GET http://localhost:3000/pedidos
+
+### Criar pedido com múltiplos itens
+POST http://localhost:3000/pedidos
+
+{
+    "id_cliente": 1,
+    "data_pedido": "2024-06-01",
+    "status": "Em andamento",
+    "valor_total": 559.96,
+    "itens": [
+        {
+            "id_produto": 1,
+            "quantidade": 2,
+            "preco_total": 279.98
+        },
+        {
+            "id_produto": 2,
+            "quantidade": 2,
+            "preco_total": 279.98
+        }
+    ]
+}
+
+###Criar pedido com estoque insuficiente (deve retornar erro)
+POST http://localhost:3000/pedidos
+{
+    "id_cliente": 1,
+    "data_pedido": "2024-06-01",
+    "status": "Em andamento",
+    "valor_total": 1399.90,
+    "itens": [
+        {
+            "id_produto": 1,
+            "quantidade": 20,
+            "preco_total": 279.98
+        },
+        {
+            "id_produto": 2,
+            "quantidade": 20,
+            "preco_total": 279.98
+        }
+    ]
+}
+
+#-----categorias----------------------------
+
+#### Criar categoria
+POST http://localhost:3000/categorias
+
+{
+    "nome_categoria": "Roupas"
+}
+
+### Buscar categoria por id
+GET http://localhost:3000/categorias/2
+
+#### Buscar categoria por nome
+GET http://localhost:3000/categorias/nome?nome_categoria=Roupas
+
+### Listar todas as categorias
+GET http://localhost:3000/categorias
+
+#----pagamentos----------------------------
+
+#### Criar pagamento
+POST http://localhost:3000/pagamentos
+
+{
+    "id_pedido": 1,
+    "id_cliente": 1,
+    "data_pagamento": "2024-06-01",
+    "valor_pago": 279.98,
+    "metodo_pagamento": "Cartão de Crédito"
+    "endereco":"Avenida General Rondon, 240, Guarujá, SP, 11420-000"   
+}
+
+### Buscar pagamento por id
+GET http://localhost:3000/pagamentos/2
+
+#### Buscar pagamento por id_pedido
+GET http://localhost:3000/pagamentos/id_pedido?id_pedido=1
+
+### Buscar pagamento por id_cliente
+GET http://localhost:3000/pagamentos/id_cliente?id_cliente=1
+
+##### Buscar pagamento por data_pagamento
+GET http://localhost:3000/pagamentos/data_pagamento?data_pagamento=2024-06-01
+
+##### Buscar pagamento por valor_pago
+GET http://localhost:3000/pagamentos/valor_pago?valor_pago=279.98
+
+##### Buscar pagamento por metodo_pagamento
+GET http://localhost:3000/pagamentos/metodo_pagamento?metodo_pagamento=Cartão de Crédito
+
+# Listar todos os pagamentos
+GET http://localhost:3000/pagamentos
+
+#-----fornecedores----------------------------
+
+#### Criar fornecedor
+POST http://localhost:3000/fornecedores
+{
+    "nome": "Fornecedor XYZ",
+    "nome_produto": "Camisa Polo",
+    "cnpj": "12.345.678/0001-90"
+}
+
+### Buscar fornecedor por id
+GET http://localhost:3000/fornecedores/2
+
+#### Buscar fornecedor por nome
+GET http://localhost:3000/fornecedores/nome?nome=Fornecedor XYZ
+
+### Buscar fornecedor por nome_produto
+GET http://localhost:3000/fornecedores/nome_produto?nome_produto
+
+### Buscar fornecedor por cnpj
+GET http://localhost:3000/fornecedores/cnpj?cnpj=12.345.678/0001-90
+
+# Listar todos os fornecedores
+GET http://localhost:3000/fornecedores
+
+#-----estoque----------------------------
+
+#### Criar estoque
+POST http://localhost:3000/estoque
+{
+    "nome_produto": "Camisa Polo",
+    "id_produto": 1,
+    "quantidade": "20"
+}
+
+### Buscar estoque por id
+GET http://localhost:3000/estoque/2
+
+#### Buscar estoque por nome_produto
+GET http://localhost:3000/estoque/nome_produto?nome_produto=Camisa Polo
+
+### Buscar estoque por id_produto
+GET http://localhost:3000/estoque/id_produto?id_produto=1
+
+### Buscar estoque por quantidade
+GET http://localhost:3000/estoque/quantidade?quantidade=20
+
+# Listar todo o estoque
+GET http://localhost:3000/estoque
+
+#----funcionarios----------------------------
+#### Criar funcionario
+POST http://localhost:3000/funcionarios
+{
+    "nome": "Funcionário ABC",
+    "cpf": "98765432100",
+    "email": "funcionario@empresa.com",
+    "endereco": "Avenida Principal, 100, São Paulo, SP, 01310-100"
+}
+
+### Buscar funcionario por id
+GET http://localhost:3000/funcionarios/2
+
+#### Buscar funcionario por nome
+GET http://localhost:3000/funcionarios/nome?nome=Funcionário ABC
+
+### Buscar funcionario por cpf
+GET http://localhost:3000/funcionarios/cpf?cpf=98765432100
+
+### Buscar funcionario por email
+GET http://localhost:3000/funcionarios/email?email=funcionario@empresa
+
+### Buscar funcionario por endereco
+GET http://localhost:3000/funcionarios/endereco?endereco=Avenida Principal
+
+# Listar todos os funcionarios
+GET http://localhost:3000/funcionarios
+
+#-----pagamentos----------------------------
+#### Criar pagamento
+POST http://localhost:3000/pagamentos
+{
+    "id_pedido": 1,
+    "id_cliente": 1,
+    "forma_pagamento": "Pix",
+    "endereco":"Avenida General Rondon, 240, Guarujá, SP, 11420-000"   
+}
+
+### Buscar pagamento por id
+GET http://localhost:3000/pagamentos/2
+
+#### Buscar pagamento por id_pedido
+GET http://localhost:3000/pagamentos/id_pedido?id_pedido=1
+
+### Buscar pagamento por id_cliente
+GET http://localhost:3000/pagamentos/id_cliente?id_cliente=1
+
+##### Buscar pagamento por forma_pagamento
+GET http://localhost:3000/pagamentos/forma_pagamento?forma_pagamento=Pix
+
+### Listar todos os pagamentos
+GET http://localhost:3000/pagamentos
+
+###
